@@ -65,13 +65,14 @@ ul{list-style-type:none;}
 #bodyleftlinkboxonePan{width:428px; height:50px; display:block; margin:25px 0 0  53px; padding:0px;}
 #bodyleftlinkboxonePan ul{width:428px; height:28px; background:none; font-family:"Trebuchet MS",Arial, Helvetica, sans-serif;}
 #bodyleftlinkboxonePan ul li{display:block; width:148px; height:34px; float:left;}
-#bodyleftlinkboxonePan ul li.comments{width:110px; height:28px; display:block; background:url(../images/icon2.gif) 0 0 no-repeat #fff; color:#1A5BB2; font-size:14px; font-weight:normal; padding:0 0 0 35px;}
-#bodyleftlinkboxonePan ul li.comments span.boldtext{font-weight:bold;}
-
+#bodyleftlinkboxonePan ul li.datepost{width:240px; height:28px; display:block; color:#1A5BB2; font-size:14px; font-weight:normal;}
+#bodyleftlinkboxonePan ul li.datepost span.boldtext{font-weight:bold;}
+#hr{border-bottom:1px solid #ccc; padding:2px 0 0 0; }
 #bodyleftlinkboxonePan ul li.continue{float:left; width:150px; height:34px; background:url(../images/icon3.gif) 0 0 no-repeat; padding:2px 0 0 35px; }
 #bodyleftlinkboxonePan ul li.continue a{display:block; width:150px; height:18px; background:#fff; color:#1A5BB2; font-size:14px; line-height:18px; font-weight:normal; text-decoration:none; }
 #bodyleftlinkboxonePan ul li.continue a:hover{display:block; height:18px; background:#F4F4F4; color:#B88F00; text-decoration:none;}
-
+.halaman div{display:inline;margin-left:5px; padding-left:5px; padding-right:5px; border:1px solid #ccc; border-radius:5px;}
+.halaman{width:100%; margin-left:200px;margin-top:20px;}
 #bodyleftlinkboxtwoPan{width:428px; height:50px; display:block; margin:25px 0 0  53px; padding:0px;}
 #bodyleftlinkboxtwoPan ul{width:428px; height:28px; background:none; font-family:"Trebuchet MS",Arial, Helvetica, sans-serif;}
 #bodyleftlinkboxtwoPan ul li{display:block; width:148px; height:34px; float:left;}
