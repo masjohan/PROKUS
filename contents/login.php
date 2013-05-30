@@ -1,3 +1,10 @@
+<?php
+
+	if(!defined("apotikuin")){
+		die("Anda tidak dapat mengakses file ini!");
+	}
+
+?>
   <div id="leftPan">
 	<p><span><center>LOGIN APOTIKUIN</center></span></p><hr>
 		<form method="post" action="proses/login.php">

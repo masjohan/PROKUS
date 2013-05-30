@@ -1,5 +1,6 @@
 <?php
 
+	define("apotikuin",1);
 	session_start();
 	if(file_exists('konfigurasi/konek.php')){
 		include "konfigurasi/konek.php";
@@ -23,7 +24,8 @@
 	}else{
 		$login = "belum";
 	}
-
+	
+	
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,11 +48,10 @@
 					<li><a href=\"?act=login\">Login</a></li>";
 				}else if($login == "dokter"){
 					echo "<li><a href=\"?act=periksa\">Pemeriksaan Pasien</a></li>
-					<li><a href=\"?act=diagnosis\">Diagnosis Penyakit</a></li>
 					<li><a href=\"?act=logout\">Logout</a></li>";
 				}else if($login == "administrator"){
-					echo "<li><a href=\"?act=pasien\">Data Pasien</a></li>
-					<li><a href=\"?act=history\">History Pasien</a></li>
+					echo "<li><a href=\"?act=pasien\">Pasien</a></li>
+					<li><a href=\"?act=dokter\">Dokter</a></li>
 					<li><a href=\"?act=news\">Berita</a></li>
 					<li><a href=\"?act=logout\">Logout</a></li>";
 				}else{
@@ -63,7 +64,15 @@
 		</ul>
   </div>
   <?php
-	include"link.php";
+	if($login=='belum'){
+		include"link/link.php";
+	}else if($login == "dokter"){
+		include"link/dokter.php";
+	}else if($login == "administrator"){
+		include"link/administrator.php";
+	}else{
+		include"link/link.php";
+	}
   ?>
 </div>
 
@@ -76,11 +85,10 @@
 					<li><a href=\"?act=login\">Login</a></li>";
 				}else if($login == "dokter"){
 					echo "<li><a href=\"?act=periksa\">Pemeriksaan Pasien</a> | </li>
-					<li><a href=\"?act=diagnosis\">Diagnosis Penyakit</a> | </li>
 					<li><a href=\"?act=logout\">Logout</a></li>";
 				}else if($login == "administrator"){
-					echo "<li><a href=\"?act=pasien\">Data Pasien</a> | </li>
-					<li><a href=\"?act=history\">History Pasien</a> | </li>
+					echo "<li><a href=\"?act=pasien\">Pasien</a> | </li>
+					<li><a href=\"?act=dokter\">Dokter</a> | </li>
 					<li><a href=\"?act=news\">Berita</a> | </li>
 					<li><a href=\"?act=logout\">Logout</a></li>";
 				}else{

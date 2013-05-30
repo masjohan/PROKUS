@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Waktu pembuatan: 01. April 2013 jam 17:20
+-- Waktu pembuatan: 29. Mei 2013 jam 15:04
 -- Versi Server: 5.5.8
 -- Versi PHP: 5.3.5
 
@@ -59,15 +59,41 @@ CREATE TABLE IF NOT EXISTS `berita` (
   `tanggal_posting` datetime NOT NULL,
   PRIMARY KEY (`id_berita`),
   KEY `id_administrator` (`id_administrator`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data untuk tabel `berita`
 --
 
 INSERT INTO `berita` (`id_berita`, `id_administrator`, `judul_berita`, `isi_berita`, `tanggal_posting`) VALUES
-(1, 1, 'Pusing', 'penyakit yang biasanya kebanyakan orang menghiraukan ternyata bisa berdampak buruk juga bila terlalu dibiarkan.', '2013-03-29 19:35:27'),
-(2, 1, 'Mual', 'mual ...', '2013-03-29 19:48:57');
+(1, 1, 'Pusing', 'penyakit yang biasanya kebanyakan orang menghiraukan ternyata bisa berdampak buruk juga bila terlalu dibiarkan.', '2013-04-02 17:33:24'),
+(2, 1, 'Mual', 'mual ...', '2013-03-29 19:48:57'),
+(3, 1, 'berita baru', 'isi berita baru', '2013-04-02 17:34:21'),
+(4, 1, 'baru', 'baru baru baru', '2013-04-02 17:34:47');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `diagnosis`
+--
+
+CREATE TABLE IF NOT EXISTS `diagnosis` (
+  `id_diagnosis` int(11) NOT NULL AUTO_INCREMENT,
+  `id_periksa` int(11) NOT NULL,
+  `id_dokter` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `diagnosis` text NOT NULL,
+  PRIMARY KEY (`id_diagnosis`),
+  KEY `id_periksa` (`id_periksa`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data untuk tabel `diagnosis`
+--
+
+INSERT INTO `diagnosis` (`id_diagnosis`, `id_periksa`, `id_dokter`, `tanggal`, `diagnosis`) VALUES
+(1, 1, 1, '2013-05-29', 'demam'),
+(2, 2, 1, '2013-05-29', 'masuk angin');
 
 -- --------------------------------------------------------
 
@@ -86,43 +112,15 @@ CREATE TABLE IF NOT EXISTS `dokter` (
   UNIQUE KEY `kode_dokter` (`kode_dokter`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data untuk tabel `dokter`
 --
 
 INSERT INTO `dokter` (`id_dokter`, `kode_dokter`, `username`, `nama`, `email`, `password`) VALUES
-(1, 'DTR0001', 'dokter', 'DOKTER 1', 'dokter@apotikuin.com', '9d2878abdd504d16fe6262f17c80dae5cec34440');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `history_pasien`
---
-
-CREATE TABLE IF NOT EXISTS `history_pasien` (
-  `id_history` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pasien` int(11) NOT NULL,
-  `id_dokter` int(11) NOT NULL,
-  `kode_history` varchar(25) NOT NULL,
-  `nama_penyakit` varchar(100) NOT NULL,
-  `deskripsi_penyakit` text NOT NULL,
-  `obat` text NOT NULL,
-  `tanggal_periksa` date NOT NULL,
-  PRIMARY KEY (`id_history`),
-  UNIQUE KEY `kode_history` (`kode_history`),
-  KEY `id_pasien` (`id_pasien`),
-  KEY `id_dokter` (`id_dokter`),
-  KEY `id_pasien_2` (`id_pasien`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data untuk tabel `history_pasien`
---
-
-INSERT INTO `history_pasien` (`id_history`, `id_pasien`, `id_dokter`, `kode_history`, `nama_penyakit`, `deskripsi_penyakit`, `obat`, `tanggal_periksa`) VALUES
-(1, 1, 1, 'HSTAPKUIN00011', 'Demam', 'Kurang tidur, kurang makan', '<p>+ obat1(3/hari setelah makan)<br>\r\n+ obat2(2/hari setelah makan)<br>\r\n+ obat3(2/hari setelah makan)<br></p>', '2013-03-29');
+(1, 'DTR0001', 'dokter', 'M Fuad Adib', 'dokter@apotikuin.com', '9d2878abdd504d16fe6262f17c80dae5cec34440'),
+(2, 'DTR0002', 'mfuadadib', 'M Fuad Adib', 'mfuadadib@yahoo.com', '395382a3791259594a6f506e4b3c2d8c4ad01b3d');
 
 -- --------------------------------------------------------
 
@@ -140,14 +138,64 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   PRIMARY KEY (`id_pasien`),
   UNIQUE KEY `kode_pasien` (`kode_pasien`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data untuk tabel `pasien`
 --
 
 INSERT INTO `pasien` (`id_pasien`, `kode_pasien`, `username`, `nama`, `jk`, `alamat`) VALUES
-(1, 'APKUIN0001', 'mfuadadib', 'M Fuad Adib', 'l', 'rt\\rw 001\\001 ds.renged, kec. kresek, kab. tangerang');
+(1, 'APKUIN0001', 'mfuadadib', 'M Fuad Adib', 'l', 'rt\\rw 001\\001 ds.renged, kec. kresek, kab. tangerang'),
+(2, 'APKUIN0002', 'mfuadadib1', 'M Fuad Adib', 'l', 'Ds. Renged Kec Kresek Kab Tangerang Prop. Banten'),
+(3, 'APKUIN0003', 'zaed', 'Zaed', 'l', 'Ds. Renged Kec Kresek Kab Tangerang Prop. Banten'),
+(4, 'APKUIN0004', 'ebiettle', 'Fuad Adib', 'l', 'ds. renged');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `periksa`
+--
+
+CREATE TABLE IF NOT EXISTS `periksa` (
+  `id_periksa` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pasien` int(11) NOT NULL,
+  `tanggal_periksa` date NOT NULL,
+  `keluhan` text NOT NULL,
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_periksa`),
+  KEY `id_pasien` (`id_pasien`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data untuk tabel `periksa`
+--
+
+INSERT INTO `periksa` (`id_periksa`, `id_pasien`, `tanggal_periksa`, `keluhan`, `status`) VALUES
+(1, 1, '2013-05-29', 'pusing, badan panas,', 'sudah'),
+(2, 4, '2013-05-29', 'pusing', 'sudah'),
+(3, 1, '2013-05-29', 'mual-mual', 'belum');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `resep`
+--
+
+CREATE TABLE IF NOT EXISTS `resep` (
+  `id_resep` int(11) NOT NULL AUTO_INCREMENT,
+  `id_diagnosis` int(11) NOT NULL,
+  `nama_obat` varchar(50) NOT NULL,
+  `aturan_pakai` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_resep`),
+  KEY `id_diagnosis` (`id_diagnosis`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `resep`
+--
+
+INSERT INTO `resep` (`id_resep`, `id_diagnosis`, `nama_obat`, `aturan_pakai`) VALUES
+(1, 1, 'Bodrek', 'ab');
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -158,10 +206,3 @@ INSERT INTO `pasien` (`id_pasien`, `kode_pasien`, `username`, `nama`, `jk`, `ala
 --
 ALTER TABLE `berita`
   ADD CONSTRAINT `berita_ibfk_1` FOREIGN KEY (`id_administrator`) REFERENCES `administrator` (`id_administrator`);
-
---
--- Ketidakleluasaan untuk tabel `history_pasien`
---
-ALTER TABLE `history_pasien`
-  ADD CONSTRAINT `history_pasien_ibfk_1` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`),
-  ADD CONSTRAINT `history_pasien_ibfk_2` FOREIGN KEY (`id_dokter`) REFERENCES `dokter` (`id_dokter`);
